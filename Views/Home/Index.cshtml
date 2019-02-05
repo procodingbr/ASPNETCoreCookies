@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+    <div id="cookieOutput">
+
+    </div>
+    <button type="button" onclick="OnCookieFromClient()">Mandar 🍪 cookie para o servidor!</button>
+</div>
+
+@section Scripts {
+<script>
+    var cookieOutput = document.getElementById('cookieOutput');
+    cookieOutput.innerText = document.cookie;
+
+    function setCookie(cname,cvalue) {
+        document.cookie = encodeURI(cname) + "=" + encodeURI(cvalue);
+    }
+
+    function OnCookieFromClient() {
+        setCookie("From Client", "With Love");
+        window.location.href = '@Url.Action("CookieFromClient")';
+    }
+
+</script>
+}
